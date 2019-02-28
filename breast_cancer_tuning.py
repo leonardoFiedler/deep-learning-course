@@ -43,3 +43,13 @@ parametros = {'batch_size':[10, 30],
               'kernel_initializer': ['random_uniform', 'normal'],
               'activation': ['relu', 'tanh'],
               'neurons': [16, 8]}
+
+#cv - numero de foldins - todos com todos.
+grid_search = GridSearchCV(estimator=classificador,
+                           param_grid=parametros,
+                           scoring='accuracy',
+                           cv=5)
+
+grid_search = grid_search.fit(previsores, classe)
+melhores_parametros = grid_search.best_params_
+melhor_precisao = grid_search.best_score_
