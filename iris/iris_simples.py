@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense
-from sklearn.preprocessing import LabelEncoder #Transforma de atributo categórico para atributo numérico
+from sklearn.preprocessing import LabelEncoder #Transforma de atributo categorico para atributo numerico
 from keras.utils import np_utils
 
 base = pd.read_csv('iris.csv')
@@ -10,17 +10,17 @@ previsores = base.iloc[:, 0:4].values
 classe = base.iloc[:, 4].values
 labelencoder = LabelEncoder()
 
-# Transforma o texto para um número
+# Transforma o texto para um numero
 classe = labelencoder.fit_transform(classe)
 classe_dummy = np_utils.to_categorical(classe)
-# Como são as saídas
+# Como sao as saidas
 # iris setosa       1 0 0
 # iris virginica    0 1 0
 # iris versicolor   0 0 1
 previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(previsores, classe_dummy, test_size=0.25)
 
 classificador = Sequential()
-# Formula de units: quantidade de entradas (4) + quantidade de saídas (3 - os tipos de saída) e divide por 2
+# Formula de units: quantidade de entradas (4) + quantidade de saidas (3 - os tipos de saida) e divide por 2
 # (4 + 3) / 2 = 3.5 ~ 4
 classificador.add(Dense(units=4, activation='relu', input_dim=4))
 classificador.add(Dense(units=4, activation='relu'))

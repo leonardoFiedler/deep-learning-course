@@ -30,5 +30,9 @@ classificador = KerasClassifier(build_fn=criar_rede,
 resultados = cross_val_score(estimator=classificador,
                              X=previsores, y=classe,
                              cv=10, scoring = 'accuracy')
+
+print(resultados)
 media = resultados.mean()
+print(media)
 desvio = resultados.std()
+print(desvio)
